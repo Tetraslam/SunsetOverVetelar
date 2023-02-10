@@ -4,8 +4,8 @@ import pygame
 import random
 
 
-WIDTH = 1920
-HEIGHT = 1080
+WIDTH = 1000
+HEIGHT = 500
 FPS = 60
 
 # Define Colors 
