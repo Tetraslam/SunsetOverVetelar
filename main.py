@@ -41,7 +41,7 @@ while run:
     win.fill((0, 0, 0))  # Set Background Color
 
     pygame.draw.rect(win, (255, 0, 0), (sprite_x, sprite_y, sprite_width, sprite_height))
-    pygame.draw.rect(win, (50, 50, 200), (0, WIN_HEIGHT - 100, WIN_WIDTH, 100))
+    pygame.draw.rect(win, (50, 50, 200), (0, WIN_HEIGHT-100, WIN_WIDTH, 100))
 
     pygame.display.update()
 
