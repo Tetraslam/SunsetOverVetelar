@@ -1,15 +1,19 @@
 import pygame
 
 pygame.init()
-win = pygame.display.set_mode((1600, 900))
+
+WIN_WIDTH = 1600
+WIN_HEIGHT = 900
+
+win = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
 pygame.display.set_caption("Sunset Over Veletar")
 
-x = 50
-y = 50
-vel = 10
+sprite_x = 50
+sprite_y = 50
+sprite_vel = 10
 
-width = 400
-height = 600
+sprite_width = 400
+sprite_height = 600
 
 run = True
 
@@ -21,22 +25,25 @@ while run:
             run = False
 
     keys = pygame.key.get_pressed()
-    
+
     if keys[pygame.K_LEFT]:
-        x -= vel
+        sprite_x -= sprite_vel
 
     if keys[pygame.K_RIGHT]:
-        x += vel
+        sprite_x += sprite_vel
 
     if keys[pygame.K_UP]:
-        y -= vel
+        sprite_y -= sprite_vel
 
     if keys[pygame.K_DOWN]:
-        y += vel
-        
-    win.fill((0, 0, 0))
-    pygame.draw.rect(win, (255,0,0), (x, y, width, height))   
-    pygame.display.update() 
-    
+        sprite_y += sprite_vel
+
+    win.fill((0, 0, 0))  # Set Background Color
+
+    pygame.draw.rect(win, (255, 0, 0), (sprite_x, sprite_y, sprite_width, sprite_height))
+    pygame.draw.rect(win, (50, 50, 200), (0, WIN_HEIGHT - 100, WIN_WIDTH, 100))
+
+    pygame.display.update()
+
 
 pygame.quit()
