@@ -1,60 +1,40 @@
-#!/usr/bin/env python2
-
 import pygame
-import random
 
-
-WIDTH = 1000
-HEIGHT = 500
-FPS = 60
-
-# Define Colors 
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
-
-## initialize pygame and create window
 pygame.init()
-pygame.mixer.init()  ## For sound
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Sunset Over Vetelar")
-clock = pygame.time.Clock()     ## For syncing the FPS
+win = pygame.display.set_mode((1600, 1000))
+pygame.display.set_caption("Sunset Over Veletar")
 
+x = 50
+y = 50
+width = 400
+height = 600
+vel = 5
 
-## group all the sprites together for ease of update
-all_sprites = pygame.sprite.group()
+run = True
 
-## Game loop
-running = True
-while running:
+while run:
+    pygame.time.delay(100)
 
-    #1 Process input/events
-    clock.tick(FPS)     ## will make the loop run at the same speed all the time
-    for event in pygame.event.get():        # gets all the events which have occured till now and keeps tab of them.
-        ## listening for the the X button at the top
+    for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
+            run = False
 
-
-    #2 Update
-    all_sprites.update()
-
-
-    #3 Draw/render
-    screen.fill(BLACK)
-
+    keys = pygame.key.get_pressed()
     
+    if keys[pygame.K_LEFT]:
+        x -= vel
 
-    all_sprites.draw(screen)
-    ########################
+    if keys[pygame.K_RIGHT]:
+        x += vel
 
-    ### Your code comes here
+    if keys[pygame.K_UP]:
+        y -= vel
 
-    ########################
-
-    ## Done after drawing everything to the screen
-    pygame.display.flip()       
-
+    if keys[pygame.K_DOWN]:
+        y += vel
+        
+    win.fill((0, 0, 0))
+    pygame.draw.rect(win, (255,0,0), (x, y, width, height))   
+    pygame.display.update() 
+    
 pygame.quit()
