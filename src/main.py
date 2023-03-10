@@ -1,3 +1,5 @@
+import time
+
 import pygame
 
 from entity_handler import EntityHandler
@@ -7,21 +9,37 @@ from ground import Ground
 WIN_WIDTH = 1600
 WIN_HEIGHT = 900
 
+FRAMES = 0
+
 
 def game_loop(win, entity_handler):
+    last_tick = time.time_ns()
+    frame_rate = 0
+    timer = time.time_ns() // 1_000_000
+
+    global FRAMES
     run = True
 
     while run:
+        now = time.time_ns()
+        time_since_last_tick = now - last_tick
+
+        if time_since_last_tick >= 10000:
+            tick(entity_handler)
+            last_tick = time.time_ns() // 1_000_000
+
+        render(entity_handler)
+        win.fill((0, 0, 0))  # TODO Create New Window Class
+        frame_rate += 1
+
+        if time.time_ns() // 1_000_000 - timer >= 1000:
+            timer = time.time_ns() // 1_000_000
+            FRAMES = frame_rate
+            frame_rate = 0
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-
-        pygame.time.delay(10)
-
-        tick(entity_handler)
-        render(entity_handler)
-
-        win.fill((0, 0, 0))  # TODO Create New Window Class
 
 
 def tick(entity_handler):
