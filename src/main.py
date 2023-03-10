@@ -19,6 +19,7 @@ def game_loop(win, entity_handler):
 
     global FRAMES
     run = True
+    buffer = pygame.Surface((WIN_WIDTH, WIN_HEIGHT))
 
     while run:
         now = time.time_ns()
@@ -27,7 +28,7 @@ def game_loop(win, entity_handler):
         if time_since_last_tick >= 10000:
             tick(entity_handler)
             last_tick = time.time_ns() // 1_000_000
-
+        buffer.fill((0, 0, 0))
         render(entity_handler)
         win.fill((0, 0, 0))  # TODO Create New Window Class
         frame_rate += 1
