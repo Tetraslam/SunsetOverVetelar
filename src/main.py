@@ -15,14 +15,13 @@ def game_loop(win, entity_handler):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-        
+
         pygame.time.delay(10)
 
         tick(entity_handler)
         render(entity_handler)
 
-        win.fill((0, 0, 0)) # TODO Create New Window Class
-
+        win.fill((0, 0, 0))  # TODO Create New Window Class
 
 
 def tick(entity_handler):
@@ -30,19 +29,19 @@ def tick(entity_handler):
 
 
 def render(entity_handler):
-    entity_handler.tick()
+    entity_handler.render()
 
 
 def main():
     pygame.init()
 
     win = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
-    pygame.display.set_caption("Sunset Over Veletar")
+    pygame.display.set_caption("Sunset Over Vetelar")
 
     entity_handler = EntityHandler()
 
-    entity_handler.add_entity(Player(win, 50, 50, 10, 400, 600)) # TODO
-    entity_handler.add_entity(Ground(win)) # TODO
+    entity_handler.add_entity(Player(win, 50, 50, 10, 400, 600))
+    entity_handler.add_entity(Ground(win))
 
     game_loop(win, entity_handler)
 
