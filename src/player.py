@@ -1,6 +1,6 @@
 import pygame
 
-import base_entity
+from base_entity import BaseEntity
 
 
 class Player(BaseEntity):
@@ -16,18 +16,21 @@ class Player(BaseEntity):
     def render(self):
         pygame.draw.rect(self.win, (255, 0, 0), (self.sprite_x, self.sprite_y, self.sprite_width, self.sprite_height))
 
+        pygame.display.update()
+
+
 
     def tick(self):
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_LEFT]:
-            sprite_x -= self.sprite_vel
+            self.sprite_x -= self.sprite_vel
 
         if keys[pygame.K_RIGHT]:
-            sprite_x += self.sprite_vel
+            self.sprite_x += self.sprite_vel
 
         if keys[pygame.K_UP]:
-            sprite_y -= self.sprite_vel
+            self.sprite_y -= self.sprite_vel
 
         if keys[pygame.K_DOWN]:
-            sprite_y += self.sprite_vel
+            self.sprite_y += self.sprite_vel
