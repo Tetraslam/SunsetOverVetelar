@@ -4,3 +4,6 @@ class BaseEntity:
 
     def tick(self):
         pass
+
+    def get_bounds(self):
+        pass

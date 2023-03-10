@@ -58,8 +58,8 @@ def main():
 
     entity_handler = EntityHandler()
 
-    entity_handler.add_entity(Player(win, 50, 50, 10, 400, 600))
-    entity_handler.add_entity(Ground(win))
+    entity_handler.add_entity(Ground(win, 0, WIN_HEIGHT - 100, WIN_WIDTH, 100))  # Ground Position: 0
+    entity_handler.add_entity(Player(win, 50, 50, 100, 160, 5, entity_handler.entities[0]))  # Player Position: 1
 
     game_loop(win, entity_handler)
 
