@@ -11,6 +11,7 @@ WIN_HEIGHT = 900
 
 FRAMES = 0
 
+# Hello
 
 def game_loop(win, entity_handler):
     last_tick = time.time_ns()
